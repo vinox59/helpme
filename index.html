@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="js/goldenlayout.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://mleibman.github.io/SlickGrid/lib/jquery.event.drag-2.2.js"></script>
+  <script src="https://mleibman.github.io/SlickGrid/slick.core.js"></script>
+  <script src="https://mleibman.github.io/SlickGrid/slick.grid.js"></script>
+  <script src="lib/dashboardgraph/formatters.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script type="text/javascript" src="lib/dashboardgraph/dashboardgraph.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <link type="text/css" rel="stylesheet" href="css/goldenlayout-base.css" />
+  <link type="text/css" rel="stylesheet" href="css/goldenlayout-dark-theme.css" />
+  <link rel="stylesheet" href="https://mleibman.github.io/SlickGrid/slick.grid.css" type="text/css"/>
+  <link rel="stylesheet" href="https://mleibman.github.io/SlickGrid/css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link type="text/css" rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="jumbotron">
+  <div class="row">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-8"></div>
+  </div>
+</div>
+<div id="indices">
+	<div class="indices" style="padding:5px;"></div>
+</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">DASHBOARD</a></li>
+      <li><a href="#">ACCOUNTS</a></li>
+      <li><a href="#">MARKETWATCH</a></li>
+      <li><a href="#">TRADE NOW</a></li>
+	  <li><a href="#">REPORTS</a></li>
+	  <li><a href="#">PORTFOLIO</a></li>
+	  <li><a href="#">RESEARCH</a></li>
+	  <li><a href="#">CHARTS</a></li>
+	  <li><a href="#">NEWS</a></li>
+	  <li><a href="#">IPO/BONDS</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+var config = {
+    content: [{
+        type: 'row',
+        content:[{
+            type: 'component',
+            componentName: 'testComponent',
+            componentState: { label: 'A' }
+        },{
+            type: 'column',
+            content:[{
+                type: 'component',
+                cssClass: 'highlight',
+                componentName: 'testComponent',
+                componentState: { label: 'B' }
+            },{
+                type: 'component',
+                componentName: 'testComponent',
+                componentState: { label: 'C' }
+            }]
+        }]
+    }]
+};
+
+var myLayout = new GoldenLayout( config );
+
+myLayout.registerComponent( 'testComponent', function( container, componentState ){
+    container.getElement().html( '<h2>' + componentState.label + '</h2>' );
+});
+
+myLayout.on( 'itemCreated', function( item ){
+  if( item.config.cssClass ){
+    item.element.addClass( item.config.cssClass );
+  }
+});
+myLayout.init();
+});
+
+</script>
+</body>
+</html>
